@@ -13,7 +13,7 @@ def mse(w, x, y_pred, y):
 
 def gradient_descent(w, x, y_pred, y, alpha):
     k = len(y)
-    return w -  alpha * (1 / k) * (x.T.dot(y_pred - y))
+    return w - alpha * (1 / k) * (x.T.dot(y_pred - y))
 
 def plot_regression(w, x, y, alpha, iterations=200):
     x_b = np.c_[np.ones((len(x) ,1)), x]
