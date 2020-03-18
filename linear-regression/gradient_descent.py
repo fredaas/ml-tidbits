@@ -8,12 +8,12 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'monospace'
 
 def mse(w, x, y_pred, y):
-    k = len(y)
-    return (1 / (2 * k)) * np.sum(np.square(y_pred - y))
+    m = len(y)
+    return (1 / (2 * m)) * np.sum(np.square(y_pred - y))
 
 def gradient_descent(w, x, y_pred, y, alpha):
-    k = len(y)
-    return w - alpha * (1 / k) * (x.T.dot(y_pred - y))
+    m = len(y)
+    return w - alpha * (1 / m) * (x.T.dot(y_pred - y))
 
 def plot_regression(w, x, y, alpha, iterations=200):
     x_b = np.c_[np.ones((len(x) ,1)), x]
@@ -39,7 +39,7 @@ def plot_regression(w, x, y, alpha, iterations=200):
     ax.legend([ "h(x)" ])
     ax.set_ylim([0, 12])
 
-    plt.title("Linear Regression (Gradient Descent)")
+    plt.title("Linear Regression (Numeric)")
     plt.grid(linestyle='dotted')
     plt.tight_layout()
 
@@ -62,10 +62,25 @@ def plot_error(w, x, y, learning_rate, iterations=200):
     ax.set_ylabel('J(w)')
     ax.set_xlabel('Iterations')
 
-    plt.title("MSE Cost Function")
+    plt.title("Numeric Error")
     plt.grid(linestyle='dotted')
     plt.tight_layout()
     plt.savefig("error.pdf", format="pdf")
+
+def plot_data(x, y):
+    _, ax = plt.subplots(figsize=(5, 5))
+
+    ax.plot(x, y, 'x')
+
+    ax.set_ylabel('y')
+    ax.set_xlabel('x')
+    ax.set_ylim([0, 12])
+
+    plt.title("Data")
+    plt.grid(linestyle='dotted')
+    plt.tight_layout()
+
+    plt.savefig("data.pdf", format="pdf")
 
 if __name__ == "__main__":
     np.random.seed(42)
@@ -74,5 +89,6 @@ if __name__ == "__main__":
     x = 2 * np.random.rand(100, 1)
     y = 4 + 3 * x + np.random.randn(100, 1)
 
+    plot_data(x, y)
     plot_regression(w, x, y, 0.01)
     plot_error(w, x, y, [0.001, 0.01, 0.1])

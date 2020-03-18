@@ -8,15 +8,15 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'monospace'
 
 def mse(w, x, y_pred, y):
-    k = len(y)
-    return (1 / (2 * k)) * np.sum(np.square(y_pred - y))
+    m = len(y)
+    return (1 / (2 * m)) * np.sum(np.square(y_pred - y))
 
 def weights(x, y):
-    k = np.size(x)
+    m = np.size(x)
 
     mean_x, mean_y = np.mean(x), np.mean(y)
-    SS_xy = np.sum(y * x) - k * mean_y * mean_x
-    SS_xx = np.sum(x * x) - k * mean_x * mean_x
+    SS_xy = np.sum(y * x) - m * mean_y * mean_x
+    SS_xx = np.sum(x * x) - m * mean_x * mean_x
 
     w_1 = SS_xy / SS_xx
     w_0 = mean_y - w_1 * mean_x
