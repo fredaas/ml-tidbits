@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from matplotlib import rcParams
 
-rcParams['font.family'] = 'monospace'
+rcParams["font.family"] = "monospace"
 
 def mse(w, x, y_pred, y):
     m = len(y)
@@ -33,16 +33,16 @@ def plot_regression(x, y):
 
     _, ax = plt.subplots(figsize=(5, 5))
 
-    ax.plot(x, y_pred, 'r-', linewidth=.25, antialiased=True)
-    ax.plot(x, y, 'x')
+    ax.plot(x, y_pred, "r-", linewidth=.25, antialiased=True)
+    ax.plot(x, y, "x")
 
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
     ax.legend([ "h(x)" ])
     ax.set_ylim([0, 12])
 
     plt.title("Linear Regression (Analytic)")
-    plt.grid(linestyle='dotted')
+    plt.grid(linestyle="dotted")
     plt.tight_layout()
 
     plt.savefig("analytic.pdf", format="pdf")

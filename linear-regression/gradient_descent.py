@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 from matplotlib import rcParams
 
-rcParams['font.family'] = 'monospace'
+rcParams["font.family"] = "monospace"
 
 def mse(w, x, y_pred, y):
     m = len(y)
@@ -25,22 +25,22 @@ def plot_regression(w, x, y, alpha, iterations=200):
         y_pred = np.dot(x_b, w)
         w = gradient_descent(w, x_b, y_pred, y, alpha)
         if i % 10 == 0:
-            ax.plot(x, y_pred, 'r-', linewidth=.25, antialiased=True)
+            ax.plot(x, y_pred, "r-", linewidth=.25, antialiased=True)
 
     error = mse(w, x_b, y_pred, y)
 
     print("Error: {:.4}".format(error))
     print("Weights: {:.4} {:.4}".format(*w[0], *w[1]))
 
-    ax.plot(x, y, 'x')
+    ax.plot(x, y, "x")
 
-    ax.set_ylabel('y')
-    ax.set_xlabel('x')
+    ax.set_ylabel("y")
+    ax.set_xlabel("x")
     ax.legend([ "h(x)" ])
     ax.set_ylim([0, 12])
 
     plt.title("Linear Regression (Numeric)")
-    plt.grid(linestyle='dotted')
+    plt.grid(linestyle="dotted")
     plt.tight_layout()
 
     plt.savefig("regression.pdf", format="pdf")
@@ -56,28 +56,28 @@ def plot_error(w, x, y, learning_rate, iterations=200):
             y_pred = np.dot(x_b, w)
             w = gradient_descent(w, x_b, y_pred, y, alpha)
             error_history[i] = mse(w, x_b, y_pred, y)
-        ax.plot(range(iterations), error_history, 'x')
+        ax.plot(range(iterations), error_history, "x")
 
     ax.legend([ "alpha = {:.2}".format(x) for x in learning_rate])
-    ax.set_ylabel('J(w)')
-    ax.set_xlabel('Iterations')
+    ax.set_ylabel("J(w)")
+    ax.set_xlabel("Iterations")
 
     plt.title("Numeric Error")
-    plt.grid(linestyle='dotted')
+    plt.grid(linestyle="dotted")
     plt.tight_layout()
     plt.savefig("error.pdf", format="pdf")
 
 def plot_data(x, y):
     _, ax = plt.subplots(figsize=(5, 5))
 
-    ax.plot(x, y, 'x')
+    ax.plot(x, y, "x")
 
-    ax.set_ylabel('y')
-    ax.set_xlabel('x')
+    ax.set_ylabel("y")
+    ax.set_xlabel("x")
     ax.set_ylim([0, 12])
 
     plt.title("Data")
-    plt.grid(linestyle='dotted')
+    plt.grid(linestyle="dotted")
     plt.tight_layout()
 
     plt.savefig("data.pdf", format="pdf")
